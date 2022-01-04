@@ -4,7 +4,7 @@
 # Covers IntelliJ files.
 *.iml
 ## Directory-based project format:
-.idea/
+.idea/*
 # Maven settings diresctory
 .mvn/
 ## Plugin-specific files: # IntelliJ
