@@ -3,11 +3,6 @@
 .trash
 # Covers IntelliJ files.
 *.iml
-#Config files
-*.yml
-
-## Directory-based project format:
-.idea/
 ## Directory-based project format:
 .idea/
 # Maven settings diresctory
@@ -78,5 +73,3 @@ local.properties
 *.war
 *.ear
 
-# Application Configuration File
-application.yml
