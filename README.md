@@ -46,7 +46,7 @@ Add your user account to docker group.
 
 `newgrp docker`
 
-# PH1TopupCentral
+# Paypal-topup-central
 
 The requirements include Java 8, Apache Maven 3.6.0. Other dependencies are PostgreSQL, Keycloak and Consul all running in docker containers.
 
