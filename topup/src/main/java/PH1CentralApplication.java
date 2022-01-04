@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -55,7 +56,7 @@ import static org.springframework.security.oauth2.client.web.OAuth2Authorization
 @EnableJpaRepositories(basePackages = {"com.ph1.topup.central"})
 @EntityScan(basePackages = {"com.ph1.topup.central"})
 @ComponentScan(basePackages = {"com.ph1.topup.central"})
-@SpringBootApplication
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 public class PH1CentralApplication
 {
 	public static void main(String[] args)
