@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta name="generator" content="Payment has been made easy" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <!-- Font Awesome Min CSS -->
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+    <!-- FlatIcon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href=
+            "assets/css/magnific-popup.min.css" /><!-- NiceSelect CSS -->
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <!-- Slick Min CSS -->
+    <link rel="stylesheet" href="assets/css/slick.min.css" />
+    <!-- MeanMenu CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.css" />
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="assets/css/odometer.min.css" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <title>Checkout | PH1 Topup Central</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href="paymentScripts/css/vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="paymentScripts/css/vendor/datepicker3.css" rel="stylesheet" />
+    <link href="paymentScripts/css/vendor/sweet-alert.css" rel="stylesheet" />
+    <link href="paymentScripts/css/helpers.css" rel="stylesheet" />
+    <link href="paymentScripts/css/app.css" rel="stylesheet" />
+    <script type="text/javascript"></script>
+    <script src="paymentScripts/js/vendor/jquery.min.js"></script>
+    <script src="paymentScripts/js/vendor/bootstrap.min.js"></script>
+    <script src="paymentScripts/js/vendor/bootstrap-maxlength.js"></script>
+    <script src="paymentScripts/js/vendor/sweet-alert.min.js"></script>
+    <script src="paymentScripts/js/vendor/jquery.form.min.js"></script>
+    <script src="paymentScripts/js/vendor/jquery.jGet.js"></script>
+    <script src="paymentScripts/js/vendor/jquery.validate.min.js"></script>
+    <script src="paymentScripts/js/vendor/jquery.validate.additional-methods.min.js"></script>
+    <script src="paymentScripts/js/app.js"></script>
+</head>
+<!-- Begin form CSS -->
+<!-- Begin form JS -->
+<!-- Preloader -->
+<body>
+<div class="preloader">
+    <div class="loader">
+        <div class="shadow"></div>
+        <div class="box"></div>
+    </div>
+</div><!-- End Preloader -->
+<!-- Start Navbar Area -->
+<div class="navbar-area">
+    <div class="ph1topupcentral-responsive-nav">
+        <div class="container">
+            <div class="ph1topupcentral-responsive-menu">
+                <div class="logo">
+                    <a href="index">
+                        <img src="assets/img/logo.png" alt="logo" />
+                        <img src="assets/img/black-logo.png" alt="logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ph1topupcentral-nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" href="index">
+                    <img src="assets/img/black-logo.png" alt="logo" />
+                </a>
+                <div class="mean-menu">
+                    <div class="others-options" th:if="${principal}">
+                        <p th:text="${principal.getName()}">
+                            Current User: 
+                        </p>
+                        <a th:href="@{/profile}" class="login-btn">
+                            <i class="fa fa-user"></i>Profile
+                        </a>
+                        |
+                        <form action="logout" method="post" th:if="${principal}">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <button class="btn btn-danger">
+                                <span>
+                                    <i class="fa fa-sign-out"></i>
+                                    Logout
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div><!-- End Navbar Area -->
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg2 jarallax" data-jarallax='{"speed": 0.3}'>
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Topup</h2>
+            <p>Checkout</p>
+        </div>
+    </div>
+</div><!-- End Page Title Area -->
+<!-- Start payment Details Area -->
+<section class="blog-details-area ptb-70">
+    <div class="container">
+        <div class="row">
+            <noscript>
+                <div class="alert alert-danger mt20neg">
+                    <div class="container aligncenter">
+                        <strong>Oops!</strong>
+                        It looks like your browser doesn't have Javascript enabled. Please enable Javascript to use this website.
+                    </div>
+                </div>
+            </noscript>
+            <div class="alert alert-warning mt20neg pv5"></div>
+            <div class="container terminal-wrapper">
+
+                <form  action="#"
+                       th:action="@{/pay}"
+                       th:object="${transaction}"
+                       method="post"
+                       class="validate form-horizontal"
+                       id="order_form" name="order_form">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <hr class="visible-xs visible-sm" />
+                            <h3 class="colorgray mt40 mb30">Your Information</h3>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">
+                                    <span class="colordanger">*</span>Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="name" class="form-control" placeholder="Full Name" value="" data-rule-required="true" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3"><span class="colordanger">*</span>Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="email" class="form-control" placeholder="Email Address" data-rule-required="true" data-rule-email="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <hr class="visible-xs visible-sm">
+                            <h3 class="colorgray mb30">
+                                <br/>
+                                <div class="floatright">
+                                    <label class="radio-inline pt0 mt10neg">
+                                        <img src="assets/img/credit-cards.jpg" class="">
+                                    </label>
+                                    <label class="radio-inline pt0 mt10neg">
+                                        <img src="assets/img/paypal.jpg" class="w100">
+                                    </label>
+                                </div>
+                            </h3>
+                            
+                            <div class="creditcard-content">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        <span class="colordanger">*</span>Phone
+                                    </label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" data-stripe="phone" class="form-control card-number" id="phone" name="phone" placeholder="Phone Number" data-rule-required="true" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                        <div class="card-type-image none"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        <span class="colordanger">*</span>Amount:[USD]
+                                    </label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input data-stripe="amount" type="text" id="amount" name="amount" value="10" class="form-control" placeholder="Amount" data-rule-required="true" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        <span class="colordanger">*</span>Reason
+                                    </label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input data-stripe="description" type="text" id="description" name="description" placeholder="Payment Description" class="form-control" data-rule-required="true" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mt50">
+                                <div class="col-md-12 alignright">
+                                    <div class="creditcard-content">
+                                        <button type="submit" class="btn btn-lg btn-primary submit-button mb20"
+                                                data-loading-text='&lt;i class="fa fa-spinner fa-spin"&gt;&lt;/i&gt; Submitting...'
+                                                data-complete-text='&lt;i class="fa fa-check"&gt;&lt;/i&gt; Payment Complete!'>
+                                            <i class="fa fa-check"></i> Submit Payment
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Blog Details Area -->
+<!-- Start Footer Area -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 col-md-6">
+                <div class="single-footer-widget">
+                    <div class="logo">
+                        <a href="#"><img src="assets/img/black-logo.png" alt="logo" /></a>
+                        <p>PH1 Topup Central is a borderless platform for all
+                            Kinds of recharging services within Africa and Europe
+                            but expanding globally.
+                        </p>
+                    </div>
+                    <ul class="social-links">
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-md-6">
+                <div class="single-footer-widget pl-5">
+                    <h3>Company</h3>
+                    <ul class="list">
+                        <li>
+                            <a href="about">About Us</a>
+                        </li>
+                        <li>
+                            <a href="updates">Latest News</a>
+                        </li>
+                        <li>
+                            <a href="faq">FAQs</a>
+                        </li>
+                        <li>
+                            <a href="bug-report">Report a Bug</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-md-6">
+                <div class="single-footer-widget">
+                    <h3>Support</h3>
+                    <ul class="list">
+                        <li>
+                            <a href="fraud-policy">Fraud policy</a>
+                        </li>
+                        <li>
+                            <a href="privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="refund-policy">Refund Policy</a>
+                        </li>
+                        <li>
+                            <a href="terms">Terms &amp; Condition</a>
+                        </li>
+                        <li>
+                            <a href="contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-md-6">
+                <div class="single-footer-widget">
+                    <h3>Address</h3>
+                    <ul class="footer-contact-info">
+                        <li><span>Location:</span> East Africa, South Africa, United Kingdom, U.S.A</li>
+                        <li><span>Email:</span> support@ph1topupcentral.com</li>
+                        <li><span>Email:</span> billing@ph1topupcentral.com</li>
+                        <li><span>Phone:</span> +44 203 519 5804</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright-area">
+            <p>Copyright 2019 <a href="index">PH1 Topup central</a>. All rights reserved</p>
+        </div>
+    </div>
+    <div class="map-image">
+        <img src="assets/img/map.png" alt="map" />
+    </div>
+</footer>
+<!-- End Footer Area -->
+<div class="go-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/jquery.meanmenu.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.appear.min.js"></script>
+<script src="assets/js/odometer.min.js"></script>
+<script src="assets/js/parallax.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
